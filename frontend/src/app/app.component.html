@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-grey">
+    <a class="navbar-brand" href="/">Simple Angular UI</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a [routerLink]="[]" class="nav-link">Home</a>
+            </li>                
+        </ul>
+        
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user-circle" aria-hidden="true"><span *ngIf="user"> {{user.name}} </span></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a *ngIf="user" [routerLink]="['user', user.id, 'details']" class="dropdown-item">My Profile</a>
+                    <a *ngIf="user" [routerLink]="['user', user.id, 'edit']" class="dropdown-item">My Settings</a>
+
+                    <a *ngIf="!user" [routerLink]="['login']" class="dropdown-item">Login</a>
+                    <a *ngIf="!user" [routerLink]="['register']" class="dropdown-item">Register</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
+
