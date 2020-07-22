@@ -17,6 +17,6 @@ app.use(bodyParser.json());
 app.use('/', routes);
 
 app.listen(process.env.SERVER_PORT);
-console.log('Magic happens on port '+ process.env.SERVER_PORT);
+console.log('Starting server on port '+ process.env.SERVER_PORT);
 
 exports = module.exports = app;
