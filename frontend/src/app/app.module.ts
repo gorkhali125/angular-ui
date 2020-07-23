@@ -9,11 +9,12 @@ import { AppComponent } from './app.component';
 
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-	declarations: [ AppComponent, WelcomeComponent, RegisterComponent ],
-	imports: [ BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule ],
+	declarations: [AppComponent, WelcomeComponent, RegisterComponent, LoginComponent],
+	imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule],
 	providers: [],
-	bootstrap: [ AppComponent ]
+	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
