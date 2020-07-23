@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { first } from 'rxjs/internal/operators/first';
+
+import { AuthService } from 'src/app/services/auth.service';
 
 import { MustMatchValidator } from '../../helpers/validators/must-match.validator';
 import { InvalidEmailValidator } from '../../helpers/validators/invalid-email.validator';
+
+
 
 @Component({
 	selector: 'app-register',
@@ -16,6 +23,8 @@ export class RegisterComponent implements OnInit {
 
 	constructor(
 		private formBuilder: FormBuilder,
+		private router: Router,
+		private authService: AuthService,
 	) { }
 
 	ngOnInit() {
@@ -54,5 +63,15 @@ export class RegisterComponent implements OnInit {
 		this.loading = true;
 
 		//Post now to the register api
+		this.authService.register(this.registerForm.value).pipe(first()).subscribe(
+			(data) => {
+				this.loading = false;
+				this.router.navigate(['/login']);
+			},
+			(error) => {
+				this.loading = false;
+				this.router.navigate(['/register']);
+			}
+		);
 	}
 }
