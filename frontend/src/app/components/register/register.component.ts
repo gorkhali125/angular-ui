@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { MustMatchValidator } from '../../helpers/validators/must-match.validator';
+import { InvalidEmailValidator } from '../../helpers/validators/invalid-email.validator';
+
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
@@ -26,6 +29,12 @@ export class RegisterComponent implements OnInit {
 				email: ['', [Validators.required]],
 				phoneNumber: ['', [Validators.required]]
 			},
+			{
+				validator: [
+					MustMatchValidator('password', 'confirmPassword'),
+					InvalidEmailValidator('email'),
+				]
+			}
 		);
 	}
 
@@ -42,9 +51,8 @@ export class RegisterComponent implements OnInit {
 			return;
 		}
 
-		
-		
-
 		this.loading = true;
+
+		//Post now to the register api
 	}
 }
