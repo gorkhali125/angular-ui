@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { MustMatchValidator } from '../../helpers/validators/must-match.validator';
 import { InvalidEmailValidator } from '../../helpers/validators/invalid-email.validator';
+import { AlertService } from 'src/app/services/alert.service';
 
 
 
@@ -25,6 +26,7 @@ export class RegisterComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private router: Router,
 		private authService: AuthService,
+		private alertService: AlertService
 	) { }
 
 	ngOnInit() {
@@ -65,12 +67,14 @@ export class RegisterComponent implements OnInit {
 		//Post now to the register api
 		this.authService.register(this.registerForm.value).pipe(first()).subscribe(
 			(data) => {
+				this.alertService.success(data['message'], true);
 				this.loading = false;
-				this.router.navigate(['/login']);
+				this.router.navigate([ '/login' ]);
 			},
 			(error) => {
+				this.alertService.error(error);
 				this.loading = false;
-				this.router.navigate(['/register']);
+				this.router.navigate([ '/register' ]);
 			}
 		);
 	}
