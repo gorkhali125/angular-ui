@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { first } from 'rxjs/internal/operators/first';
-
 import { AuthService } from 'src/app/services/auth.service';
 import { AlertService } from 'src/app/services/alert.service';
 
 import { MustMatchValidator } from 'src/app/helpers/validators/must-match.validator';
 import { InvalidEmailValidator } from 'src/app/helpers/validators/invalid-email.validator';
 import { IsUniqueValidator } from 'src/app/helpers/validators/is-unique-validator';
-
 
 
 @Component({
@@ -68,7 +65,7 @@ export class RegisterComponent implements OnInit {
 		this.loading = true;
 
 		//Post now to the register api
-		this.authService.register(this.registerForm.value).pipe(first()).subscribe(
+		this.authService.register(this.registerForm.value).subscribe(
 			(data) => {
 				this.alertService.success(data['message'], true);
 				this.loading = false;

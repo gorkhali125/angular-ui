@@ -1,5 +1,4 @@
 import { FormGroup } from '@angular/forms';
-import { first } from 'rxjs/internal/operators/first';
 import { AuthService } from 'src/app/services/auth.service';
 
 // custom validator to check if a field is unique in db
@@ -12,7 +11,7 @@ export function IsUniqueValidator(controlName: string, authService: AuthService)
 			return;
 		}
 		// // set error on matchingControl if validation fails
-		authService.isUnique(controlName, control.value).pipe(first()).subscribe(
+		authService.isUnique(controlName, control.value).subscribe(
 			(data) => {
 				if(data['found']){
 					control.setErrors({ notUnique: true });

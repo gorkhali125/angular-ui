@@ -1,10 +1,8 @@
 const express = require('express');
 const routes = express.Router();
 const bcrypt = require('bcrypt');
-const Op = require('sequelize').Op;
 
 const { User } = require('../sequelize');
-const { query } = require('express');
 
 routes.get('/', (req, res) => {
 	res.status(200).json({ message: 'Connected!' });
