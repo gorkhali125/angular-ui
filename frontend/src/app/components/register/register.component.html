@@ -33,6 +33,7 @@
         <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
           <div *ngIf="f.userName.errors.required">This field is required.</div>
           <div *ngIf="f.userName.errors.minlength">Username must be at least 4 characters.</div>
+          <div *ngIf="f.userName.errors.notUnique">This username is already taken.</div>
         </div>
       </div>
 
@@ -69,6 +70,7 @@
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required">This field is required.</div>
           <div *ngIf="f.email.errors.invalidEmail">Please enter a valid email address.</div>
+          <div *ngIf="f.email.errors.notUnique">This email address is already taken.</div>
         </div>
       </div>
 

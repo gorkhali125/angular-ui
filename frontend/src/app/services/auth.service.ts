@@ -14,4 +14,8 @@ export class AuthService {
 	register(user: any) {
 		return this.http.post(`http://localhost:${this.serverPort}/register`, user);
 	}
+
+	isUnique(field: string, data: string){
+		return this.http.post(`http://localhost:${this.serverPort}/checkunique`, {field: field, data: data});
+	}
 }

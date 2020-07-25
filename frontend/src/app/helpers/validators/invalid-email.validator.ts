@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
 
-// custom validator to check that two fields match
+// custom validator to check if the email address is valid
 export function InvalidEmailValidator(controlName: string) {
 	return (formGroup: FormGroup) => {
 		const control = formGroup.controls[controlName];

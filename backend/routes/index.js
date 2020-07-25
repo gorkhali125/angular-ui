@@ -1,8 +1,10 @@
 const express = require('express');
 const routes = express.Router();
 const bcrypt = require('bcrypt');
+const Op = require('sequelize').Op;
 
 const { User } = require('../sequelize');
+const { query } = require('express');
 
 routes.get('/', (req, res) => {
 	res.status(200).json({ message: 'Connected!' });
@@ -10,6 +12,16 @@ routes.get('/', (req, res) => {
 
 routes.post('/login', (req, res) => {
 
+});
+
+routes.post('/checkunique', (req, res) => {
+	User.findOne({
+		where: {
+			[req.body.field]: req.body.data
+		},
+	}).then(function(user){
+		res.status(200).json({found: user ? true : false});
+	});
 });
 
 routes.post('/register', (req, res) => {

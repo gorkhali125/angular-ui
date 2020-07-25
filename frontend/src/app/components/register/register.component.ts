@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/internal/operators/first';
 
 import { AuthService } from 'src/app/services/auth.service';
-
-import { MustMatchValidator } from '../../helpers/validators/must-match.validator';
-import { InvalidEmailValidator } from '../../helpers/validators/invalid-email.validator';
 import { AlertService } from 'src/app/services/alert.service';
+
+import { MustMatchValidator } from 'src/app/helpers/validators/must-match.validator';
+import { InvalidEmailValidator } from 'src/app/helpers/validators/invalid-email.validator';
+import { IsUniqueValidator } from 'src/app/helpers/validators/is-unique-validator';
 
 
 
@@ -44,6 +45,8 @@ export class RegisterComponent implements OnInit {
 				validator: [
 					MustMatchValidator('password', 'confirmPassword'),
 					InvalidEmailValidator('email'),
+					IsUniqueValidator('userName', this.authService),
+					IsUniqueValidator('email', this.authService),
 				]
 			}
 		);
@@ -69,12 +72,12 @@ export class RegisterComponent implements OnInit {
 			(data) => {
 				this.alertService.success(data['message'], true);
 				this.loading = false;
-				this.router.navigate([ '/login' ]);
+				this.router.navigate(['/login']);
 			},
 			(error) => {
 				this.alertService.error(error);
 				this.loading = false;
-				this.router.navigate([ '/register' ]);
+				this.router.navigate(['/register']);
 			}
 		);
 	}
