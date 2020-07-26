@@ -10,6 +10,7 @@
         [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
         <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
           <div *ngIf="f.userName.errors.required">This field is required.</div>
+          <div *ngIf="f.userName.errors.minlength">Username must be at least 4 characters.</div>
         </div>
     </div>
 
