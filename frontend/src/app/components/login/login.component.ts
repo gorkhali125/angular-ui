@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { AuthService } from 'src/app/services/auth.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
 	selector: 'app-login',
@@ -13,6 +17,9 @@ export class LoginComponent implements OnInit {
 
 	constructor(
 		private formBuilder: FormBuilder,
+		private router: Router,
+		private authService: AuthService,
+		private alertService: AlertService,
 	) { }
 
 	ngOnInit() {
@@ -38,5 +45,16 @@ export class LoginComponent implements OnInit {
 		}
 
 		this.loading = true;
+		this.authService.login(this.loginForm.value).subscribe(
+			(data) => {
+				this.alertService.success(data.message, true);
+				this.router.navigate(['/dashboard']);
+			},
+			(error) => {
+				this.alertService.error(error);
+				this.loading = false;
+				this.router.navigate(['/login']);
+			}
+		);
 	}
 }
