@@ -9,7 +9,11 @@ routes.get('/', (req, res) => {
 });
 
 routes.post('/login', (req, res) => {
-
+	User.findOne({
+		where: {username: req.body.userName},
+	}).then(function(user){
+		
+	});
 });
 
 routes.post('/checkunique', (req, res) => {
