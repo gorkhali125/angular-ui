@@ -21,7 +21,7 @@
                         <a [routerLink]="['user', user.id, 'details']" class="dropdown-item">My Profile</a>
                         <a [routerLink]="['user', user.id, 'edit']" class="dropdown-item">My Settings</a>
                         <div class="dropdown-divider"></div>
-                        <a [routerLink]="['logout']" class="dropdown-item">Logout</a>
+                        <a href="#" class="dropdown-item" (click)="onLogout()">Logout</a>
                     </div>
                    
                     <div *ngIf="!user" class="not-logged-in">

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AlertService } from './services/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +10,20 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'frontend';
   user: any;
-  
-  constructor(){
+
+  constructor(
+    private alertService: AlertService,
+    private router: Router,
+  ) {
     this.user = JSON.parse(localStorage.getItem('user'));
+  }
+
+  onLogout() {
+    localStorage.removeItem('user');
+    this.alertService.success('Logged out succesfully!', true);
+    this.router.navigate(['/'])
+      .then(() => {
+        window.location.reload();
+      });
   }
 }

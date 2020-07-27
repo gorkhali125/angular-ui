@@ -48,7 +48,10 @@ export class LoginComponent implements OnInit {
 		this.authService.login(this.loginForm.value).subscribe(
 			(data) => {
 				this.alertService.success(data['message'], true);
-				this.router.navigate(['/dashboard']);
+				this.router.navigate(['/dashboard'])
+					.then(() => {
+						window.location.reload();
+					});
 			},
 			(error) => {
 				this.alertService.error(error);
