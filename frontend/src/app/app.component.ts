@@ -10,10 +10,6 @@ export class AppComponent {
   user: any;
   
   constructor(){
-    this.user = '';
-    // this.user = {
-    //   id: '2',
-    //   name: 'Deepesh Khanal'
-    // };
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 }
