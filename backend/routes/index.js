@@ -1,6 +1,9 @@
 const express = require('express');
 const routes = express.Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+require('dotenv').config();
 
 const { User } = require('../sequelize');
 
@@ -12,7 +15,17 @@ routes.post('/login', (req, res) => {
 	User.findOne({
 		where: {username: req.body.userName},
 	}).then(function(user){
-		
+		if(!user){
+			res.status(409).json({ message: 'Invalid username and/or password.' });
+		}else{
+			bcrypt.compare(req.body.password, user.password, function(err, result) {
+				if(result){
+					res.status(200).json({message: 'Logged in succesfully.', token: jwt.sign({ username: user.username }, process.env.JWT_TOKEN_SECRET, { expiresIn: '30 days' }) });
+				}else{
+					res.status(409).json({ message: 'Invalid username and/or password.' });
+				}
+			});
+		}
 	});
 });
 

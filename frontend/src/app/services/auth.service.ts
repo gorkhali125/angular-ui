@@ -23,11 +23,9 @@ export class AuthService {
 
 	login(user: any) {
 		return this.http.post<any>(`http://localhost:${this.serverPort}/login`, user).pipe(
-			map((user) => {
-				if (user) {
-					localStorage.setItem('access_token', user.token);
-				}
-				return user;
+			map((data) => {
+				localStorage.setItem('access_token', data.token);
+				return data;
 			})
 		);
 	}
