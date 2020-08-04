@@ -8,6 +8,9 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a [routerLink]="['']" class="nav-link">Home</a>
+            </li>
+            <li *ngIf="user" class="nav-item active">
+                <a [routerLink]="['dashboard']" class="nav-link">Dashboard</a>
             </li>                
         </ul>
         
@@ -18,9 +21,9 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <div *ngIf="user" class="logged-in">
-                        <a [routerLink]="['user', user.id, 'details']" class="dropdown-item">My Profile</a>
-                        <a [routerLink]="['user', user.id, 'edit']" class="dropdown-item">My Settings</a>
-                        <div class="dropdown-divider"></div>
+                        <!-- <a [routerLink]="['user', user.id, 'details']" class="dropdown-item">My Profile</a>
+                        <a [routerLink]="['user', user.id, 'edit']" class="dropdown-item">My Settings</a> -->
+                        <!-- <div class="dropdown-divider"></div> -->
                         <a href="#" class="dropdown-item" (click)="onLogout()">Logout</a>
                     </div>
                    
