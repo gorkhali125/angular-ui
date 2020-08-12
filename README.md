@@ -1,3 +1,7 @@
+# Still Under Active Development
+
+This project is still under active development.
+
 # User Login/Register Functionality
 
 A simple app in Node and Angular which let's users to browse a welcome page, register a user in the system, login into it and view the homepage of that user. This is just a starter project and functionality will be added as necessary.
