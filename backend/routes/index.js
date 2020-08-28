@@ -24,7 +24,8 @@ routes.post('/login', (req, res) => {
 						message: 'Logged in succesfully.', 
 						token: jwt.sign({ username: user.username }, process.env.JWT_TOKEN_SECRET, { expiresIn: '30 days' }),
 						id: user.id,
-						name: user.firstName + ' ' + user.lastName
+						name: user.firstName + ' ' + user.lastName,
+						user: user
 					});
 				}else{
 					res.status(409).json({ message: 'Invalid username and/or password.' });
