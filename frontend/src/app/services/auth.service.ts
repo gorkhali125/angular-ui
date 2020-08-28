@@ -25,6 +25,7 @@ export class AuthService {
 		return this.http.post<any>(`http://localhost:${this.serverPort}/login`, user).pipe(
 			map((data) => {
 				localStorage.setItem('user', JSON.stringify({ 'id': data.id, 'name': data.name, 'access_token': data.token }));
+				localStorage.setItem('userObj', JSON.stringify({'user': data}));
 				return data;
 			})
 		);
